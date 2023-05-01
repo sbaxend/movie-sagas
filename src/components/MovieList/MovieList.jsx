@@ -8,20 +8,22 @@ function MovieList() {
     const history = useHistory();
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
-
+  
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
-    const movieClick = () => {
+    // 
+    const movieClick = (movie) => {
+        dispatch({ type: 'SET_SELECTED_MOVIE', payload: movie });
         history.push('/details')
     }
     return (
         <main>
             <h1>MovieList</h1>
-            <section onClick={movieClick} className="movies">
+            <section  className="movies">
                 {movies.map(movie => {
                     return (
-                        <div key={movie.id}  >
+                        <div key={movie.id} onClick={() => movieClick(movie)} >
                             <h3>{movie.title}</h3>
                             <img src={movie.poster} alt={movie.title}/>
                         </div>
