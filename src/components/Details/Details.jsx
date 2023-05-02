@@ -6,6 +6,10 @@ import {
 
 import React, { useEffect } from "react";
 
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+
 function Details() {
   const selectedMovie = useSelector((store) => store.selectedMovie);
   const dispatch = useDispatch();
@@ -26,14 +30,17 @@ function Details() {
   //
   return (
     <div>
+     <Paper elevation={3} style={{ padding: '1rem' }}>
     <header>
     <h1>{selectedMovie.title}</h1>
     <img src={selectedMovie.poster} />
   </header>
 
   <section>
+   
     <h2>Description</h2>
     <p>{selectedMovie.description}</p>
+    
 
     <h2>Genre</h2>
     <ul>
@@ -44,8 +51,9 @@ function Details() {
   </section>
 
   <footer>
-    <button onClick={backHome}>Back to Home</button>
+    <Button onClick={backHome}><ArrowBackIcon /></Button>
   </footer>
+  </Paper>
   </div>
   );
 }
