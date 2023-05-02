@@ -15,6 +15,8 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     // yield takeEvery('FETCH_SELECTED_MOVIE', fetchSelectedMovieGenre);
+
+    // this waits for a dispatch of FETCH_GENRES and triggers the fetchGenres funciton
     yield takeEvery('FETCH_GENRES', fetchGenres);
 
 }
@@ -22,10 +24,14 @@ function* rootSaga() {
 
 function* fetchGenres(action) {
     try {
+        //had to set the action.payload to a variable to send to the router
         const movieId = action.payload;
+        //checking if it was sending correctly
         console.log(movieId)
+        // set a variable that triggers the axio.get request of genres which uses the id of the aciton payload
         const response = yield axios.get(`/api/genre/${movieId}`);
         console.log(response.data)
+        //once data is recieved then it dispatches data to store in genres reducer
         yield put({ type: 'SET_GENRES', payload: response.data });
     } catch (error) {
         console.log('Error fetching genres:', error);

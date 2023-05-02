@@ -20,6 +20,7 @@ function Details() {
   //the genres of the selected movie will display
   const genres = useSelector((store) => store.genres);
 
+  //this funciton dispatches to clear out selected movie and genres and returns back home to select a new one
   const backHome = () => {
     dispatch({ type: "CLEAR_SELECTED_MOVIE" });
     dispatch({ type: "CLEAR_GENRE" });

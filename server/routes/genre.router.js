@@ -4,6 +4,7 @@ const pool = require('../modules/pool')
 
 router.get('/:movieId', (req, res) => {
   const movieId = req.params.movieId;
+  //checking to see if recieving correctly
   console.log(movieId)
   const query = `
     SELECT "genres".id, "genres".name

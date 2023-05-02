@@ -14,7 +14,8 @@ function MovieList() {
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
-    // 
+    // this funciton helps with setting the reducer to the users chosen movie and then pushes user to 
+    // the details page
     const movieClick = (movie) => {
         dispatch({ type: 'SET_SELECTED_MOVIE', payload: movie});
         // dispatch({type: 'FETCH_GENRES', payload: movie.id});
