@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 //import use history to change routes
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
 
 function MovieList() {
     const history = useHistory();
@@ -22,14 +24,19 @@ function MovieList() {
         <main>
             <h1>MovieList</h1>
             <section  className="movies">
+                <Grid container spacing={3}>
                 {movies.map(movie => {
                     return (
-                        <div key={movie.id} onClick={() => movieClick(movie)} >
+                        <Grid item xs={4} key={movie.id}>
+                        <Card sx={{ height: 375, bgcolor: "#f5f5f5", backgroundColor: 'common.white',
+                        '&:hover': { opacity: [0.9, 0.8, 0.7]},}} onClick={() => movieClick(movie)} >
                             <h3>{movie.title}</h3>
                             <img src={movie.poster} alt={movie.title}/>
-                        </div>
+                        </Card>
+                        </Grid>
                     );
                 })}
+                </Grid>
             </section>
         </main>
 
